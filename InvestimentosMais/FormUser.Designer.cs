@@ -44,7 +44,16 @@
             this.ttpName = new System.Windows.Forms.ToolTip(this.components);
             this.btnInsert = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.pnlList = new System.Windows.Forms.Panel();
+            this.LtvList = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnlCadUser.SuspendLayout();
+            this.pnlList.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlCadUser
@@ -179,11 +188,66 @@
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // pnlList
+            // 
+            this.pnlList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlList.Controls.Add(this.LtvList);
+            this.pnlList.Location = new System.Drawing.Point(12, 234);
+            this.pnlList.Name = "pnlList";
+            this.pnlList.Size = new System.Drawing.Size(574, 137);
+            this.pnlList.TabIndex = 3;
+            // 
+            // LtvList
+            // 
+            this.LtvList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
+            this.LtvList.HideSelection = false;
+            this.LtvList.Location = new System.Drawing.Point(6, 3);
+            this.LtvList.Name = "LtvList";
+            this.LtvList.Size = new System.Drawing.Size(561, 127);
+            this.LtvList.TabIndex = 0;
+            this.LtvList.UseCompatibleStateImageBehavior = false;
+            this.LtvList.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "ID";
+            this.columnHeader1.Width = 30;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Nome";
+            this.columnHeader2.Width = 150;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Profissão";
+            this.columnHeader3.Width = 100;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "E-mail";
+            this.columnHeader4.Width = 160;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "CPF";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Gênero";
+            // 
             // FormUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(598, 239);
+            this.ClientSize = new System.Drawing.Size(598, 383);
+            this.Controls.Add(this.pnlList);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnInsert);
             this.Controls.Add(this.pnlCadUser);
@@ -191,8 +255,10 @@
             this.Name = "FormUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "+";
+            this.Load += new System.EventHandler(this.FormUser_Load);
             this.pnlCadUser.ResumeLayout(false);
             this.pnlCadUser.PerformLayout();
+            this.pnlList.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -213,5 +279,13 @@
         private System.Windows.Forms.MaskedTextBox mtbCPF;
         private System.Windows.Forms.Button btnInsert;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Panel pnlList;
+        private System.Windows.Forms.ListView LtvList;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }

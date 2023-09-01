@@ -17,6 +17,48 @@ namespace InvestimentosMais
         {
             InitializeComponent();
         }
+        private void UpdateListView()
+        {
+            Connection conn = new Connection();
+            SqlCommand sqlCom = new SqlCommand();
+            
+            sqlCom.Connection = conn.ReturnConnection();
+            sqlCom.CommandText = "SELECT * FROM TB_User";
+
+            try
+            {
+                SqlDataReader dr = sqlCom.ExecuteReader();
+
+                //Enquanto for possível continuar a leitura das linhas que foram retornadas na consulta, execute.
+                while (dr.Read())
+                {
+                    int id        = (int)dr["Id"];
+                    string name   = (string)dr["Name"];
+                    string job    = (string)dr["Job"];
+                    string email  = (string)dr["Email"];
+                    string cpf    = (string)dr["Cpf"];
+                    string gender = (string)dr["Gender"];
+
+                    ListViewItem lv = new ListViewItem(id.ToString());
+                    lv.SubItems.Add(name);
+                    lv.SubItems.Add(job);
+                    lv.SubItems.Add(email);
+                    lv.SubItems.Add(cpf);
+                    lv.SubItems.Add(gender);
+                    LtvList.Items.Add(lv);
+
+                }
+                dr.Close();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            finally
+            {
+                conn.CloseConnection();
+            }
+        }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -31,7 +73,7 @@ namespace InvestimentosMais
         {
             Connection connection = new Connection();
             SqlCommand sqlCommand = new SqlCommand();
-            
+
             sqlCommand.Connection = connection.ReturnConnection();
             sqlCommand.CommandText = @"INSERT INTO TB_User VALUES 
             (@name, @job, @email, @cpf, @gender)";
@@ -39,7 +81,7 @@ namespace InvestimentosMais
             sqlCommand.Parameters.AddWithValue("@name", txbName.Text);
             sqlCommand.Parameters.AddWithValue("@job", txbJob.Text);
             sqlCommand.Parameters.AddWithValue("@email", txbEmail.Text);
-            sqlCommand.Parameters.AddWithValue("@cpf",  mtbCPF.Text);
+            sqlCommand.Parameters.AddWithValue("@cpf", mtbCPF.Text);
             sqlCommand.Parameters.AddWithValue("@gender", cmbGender.Text);
 
             try
@@ -62,6 +104,11 @@ namespace InvestimentosMais
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
                 );
+        }
+
+        private void FormUser_Load(object sender, EventArgs e)
+        {
+            UpdateListView();
         }
     }
 }
