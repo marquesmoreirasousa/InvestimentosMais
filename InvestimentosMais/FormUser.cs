@@ -13,15 +13,18 @@ namespace InvestimentosMais
 {
     public partial class FormUser : Form
     {
+        private int Id;
         public FormUser()
         {
             InitializeComponent();
         }
         private void UpdateListView()
         {
+            LtvList.Items.Clear();
+
             Connection conn = new Connection();
             SqlCommand sqlCom = new SqlCommand();
-            
+
             sqlCom.Connection = conn.ReturnConnection();
             sqlCom.CommandText = "SELECT * FROM TB_User";
 
@@ -32,11 +35,11 @@ namespace InvestimentosMais
                 //Enquanto for possível continuar a leitura das linhas que foram retornadas na consulta, execute.
                 while (dr.Read())
                 {
-                    int id        = (int)dr["Id"];
-                    string name   = (string)dr["Name"];
-                    string job    = (string)dr["Job"];
-                    string email  = (string)dr["Email"];
-                    string cpf    = (string)dr["Cpf"];
+                    int id = (int)dr["Id"];
+                    string name = (string)dr["Name"];
+                    string job = (string)dr["Job"];
+                    string email = (string)dr["Email"];
+                    string cpf = (string)dr["Cpf"];
                     string gender = (string)dr["Gender"];
 
                     ListViewItem lv = new ListViewItem(id.ToString());
@@ -59,14 +62,21 @@ namespace InvestimentosMais
                 conn.CloseConnection();
             }
         }
-
-        private void btnClear_Click(object sender, EventArgs e)
+        private void ClearFields()
         {
             txbName.Clear();
             txbJob.Clear();
             txbEmail.Clear();
             mtbCPF.Clear();
             cmbGender.ResetText();
+            btnInsert.Enabled = true;
+            BtnEdit.Enabled = false;
+            BtnDelete.Enabled = false;
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearFields();
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -98,6 +108,9 @@ namespace InvestimentosMais
             {
                 connection.CloseConnection();
             }
+            ClearFields();
+            UpdateListView();
+
             MessageBox.Show(
                 "Cadastrado com Sucesso",
                 "CADASTRO",
@@ -108,6 +121,130 @@ namespace InvestimentosMais
 
         private void FormUser_Load(object sender, EventArgs e)
         {
+            UpdateListView();
+        }
+
+        private void mtbCEP_TextChanged(object sender, EventArgs e)
+        {
+            if (mtbCEP.Text.Length == 9)
+            {
+                using (var ws = new WSCorreios.AtendeClienteClient())
+                {
+                    try
+                    {
+                        MessageBox.Show(mtbCEP.Text.Replace('-', ' '));
+                        var end = ws.consultaCEP(mtbCEP.Text.Replace("-", ""));
+                        txbStreet.Text = end.end;
+                        txbNeighborhood.Text = end.bairro;
+                        txbCity.Text = end.cidade;
+                        txbState.Text = end.uf;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("ERRO ao consultar CEP\n" + ex.Message);
+                    }
+                }
+            }
+        }
+
+        private void LtvList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index;
+            index = LtvList.FocusedItem.Index;
+            Id = int.Parse(LtvList.Items[index].SubItems[0].Text);
+            txbName.Text = LtvList.Items[index].SubItems[1].Text;
+            txbJob.Text = LtvList.Items[index].SubItems[2].Text;
+            txbEmail.Text = LtvList.Items[index].SubItems[3].Text;
+            mtbCPF.Text = LtvList.Items[index].SubItems[4].Text;
+            cmbGender.Text = LtvList.Items[index].SubItems[5].Text;
+            btnInsert.Enabled = false;
+            BtnEdit.Enabled = true;
+            BtnDelete.Enabled = true;
+        
+        }
+
+        private void BtnEdit_Click(object sender, EventArgs e)
+        {
+            Connection connection = new Connection();
+            SqlCommand sqlCommand = new SqlCommand();
+
+            sqlCommand.Connection = connection.ReturnConnection();
+            sqlCommand.CommandText = @"UPDATE TB_User SET 
+            Name = @name, 
+            Job = @job, 
+            Email = @email, 
+            Cpf = @cpf, 
+            Gender = @gender
+            WHERE Id = @id";
+
+            sqlCommand.Parameters.AddWithValue("@name", txbName.Text);
+            sqlCommand.Parameters.AddWithValue("@job", txbJob.Text);
+            sqlCommand.Parameters.AddWithValue("@email", txbEmail.Text);
+            sqlCommand.Parameters.AddWithValue("@cpf", mtbCPF.Text);
+            sqlCommand.Parameters.AddWithValue("@gender", cmbGender.Text);
+            sqlCommand.Parameters.AddWithValue("@id", Id);
+
+            try
+            {
+                //Insere o cliente
+                sqlCommand.ExecuteNonQuery();
+
+                ClearFields();
+
+                MessageBox.Show(
+                "Atualizado com Sucesso",
+                "CADASTRO",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+                );
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Erro: Problemas ao editar usuário no banco.\n"
+                    + err.Message);
+            }
+            finally
+            {
+                connection.CloseConnection();
+            }
+            
+            UpdateListView();   
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            Connection connection = new Connection();
+            SqlCommand sqlCommand = new SqlCommand();
+
+            sqlCommand.Connection = connection.ReturnConnection();
+            sqlCommand.CommandText = @"DELETE FROM TB_User WHERE Id = @id";
+
+            sqlCommand.Parameters.AddWithValue("@id", Id);
+
+            try
+            {
+                //Excluir o cliente
+                sqlCommand.ExecuteNonQuery();
+
+                ClearFields();
+
+                MessageBox.Show(
+                "Excluído com Sucesso",
+                "CADASTRO",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+                );
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("Erro: Problemas ao excluir usuário no banco.\n"
+                    + error.Message);
+            }
+            finally
+            {
+                connection.CloseConnection();
+            }
+
             UpdateListView();
         }
     }

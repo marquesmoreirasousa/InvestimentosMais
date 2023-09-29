@@ -31,6 +31,19 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUser));
             this.pnlCadUser = new System.Windows.Forms.Panel();
+            this.pnlAddress = new System.Windows.Forms.Panel();
+            this.txbState = new System.Windows.Forms.TextBox();
+            this.lblState = new System.Windows.Forms.Label();
+            this.txbCity = new System.Windows.Forms.TextBox();
+            this.lblCity = new System.Windows.Forms.Label();
+            this.txbNeighborhood = new System.Windows.Forms.TextBox();
+            this.lblNeighborhood = new System.Windows.Forms.Label();
+            this.txbNumber = new System.Windows.Forms.TextBox();
+            this.lblNumber = new System.Windows.Forms.Label();
+            this.mtbCEP = new System.Windows.Forms.MaskedTextBox();
+            this.txbStreet = new System.Windows.Forms.TextBox();
+            this.lblStreet = new System.Windows.Forms.Label();
+            this.lblCEP = new System.Windows.Forms.Label();
             this.lblGender = new System.Windows.Forms.Label();
             this.cmbGender = new System.Windows.Forms.ComboBox();
             this.lblCPF = new System.Windows.Forms.Label();
@@ -52,13 +65,17 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.BtnEdit = new System.Windows.Forms.Button();
+            this.BtnDelete = new System.Windows.Forms.Button();
             this.pnlCadUser.SuspendLayout();
+            this.pnlAddress.SuspendLayout();
             this.pnlList.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlCadUser
             // 
             this.pnlCadUser.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlCadUser.Controls.Add(this.pnlAddress);
             this.pnlCadUser.Controls.Add(this.lblGender);
             this.pnlCadUser.Controls.Add(this.cmbGender);
             this.pnlCadUser.Controls.Add(this.lblCPF);
@@ -71,8 +88,131 @@
             this.pnlCadUser.Controls.Add(this.lblName);
             this.pnlCadUser.Location = new System.Drawing.Point(12, 12);
             this.pnlCadUser.Name = "pnlCadUser";
-            this.pnlCadUser.Size = new System.Drawing.Size(471, 216);
+            this.pnlCadUser.Size = new System.Drawing.Size(745, 216);
             this.pnlCadUser.TabIndex = 0;
+            // 
+            // pnlAddress
+            // 
+            this.pnlAddress.Controls.Add(this.txbState);
+            this.pnlAddress.Controls.Add(this.lblState);
+            this.pnlAddress.Controls.Add(this.txbCity);
+            this.pnlAddress.Controls.Add(this.lblCity);
+            this.pnlAddress.Controls.Add(this.txbNeighborhood);
+            this.pnlAddress.Controls.Add(this.lblNeighborhood);
+            this.pnlAddress.Controls.Add(this.txbNumber);
+            this.pnlAddress.Controls.Add(this.lblNumber);
+            this.pnlAddress.Controls.Add(this.mtbCEP);
+            this.pnlAddress.Controls.Add(this.txbStreet);
+            this.pnlAddress.Controls.Add(this.lblStreet);
+            this.pnlAddress.Controls.Add(this.lblCEP);
+            this.pnlAddress.Location = new System.Drawing.Point(252, 9);
+            this.pnlAddress.Name = "pnlAddress";
+            this.pnlAddress.Size = new System.Drawing.Size(474, 194);
+            this.pnlAddress.TabIndex = 10;
+            // 
+            // txbState
+            // 
+            this.txbState.Location = new System.Drawing.Point(6, 174);
+            this.txbState.Name = "txbState";
+            this.txbState.Size = new System.Drawing.Size(232, 20);
+            this.txbState.TabIndex = 20;
+            this.ttpName.SetToolTip(this.txbState, "Digite o estado...");
+            // 
+            // lblState
+            // 
+            this.lblState.AutoSize = true;
+            this.lblState.Location = new System.Drawing.Point(3, 158);
+            this.lblState.Name = "lblState";
+            this.lblState.Size = new System.Drawing.Size(40, 13);
+            this.lblState.TabIndex = 19;
+            this.lblState.Text = "Estado";
+            // 
+            // txbCity
+            // 
+            this.txbCity.Location = new System.Drawing.Point(6, 134);
+            this.txbCity.Name = "txbCity";
+            this.txbCity.Size = new System.Drawing.Size(232, 20);
+            this.txbCity.TabIndex = 18;
+            this.ttpName.SetToolTip(this.txbCity, "Digite a cidade...");
+            // 
+            // lblCity
+            // 
+            this.lblCity.AutoSize = true;
+            this.lblCity.Location = new System.Drawing.Point(3, 118);
+            this.lblCity.Name = "lblCity";
+            this.lblCity.Size = new System.Drawing.Size(40, 13);
+            this.lblCity.TabIndex = 17;
+            this.lblCity.Text = "Cidade";
+            // 
+            // txbNeighborhood
+            // 
+            this.txbNeighborhood.Location = new System.Drawing.Point(6, 95);
+            this.txbNeighborhood.Name = "txbNeighborhood";
+            this.txbNeighborhood.Size = new System.Drawing.Size(232, 20);
+            this.txbNeighborhood.TabIndex = 16;
+            this.ttpName.SetToolTip(this.txbNeighborhood, "Digite o bairro...");
+            // 
+            // lblNeighborhood
+            // 
+            this.lblNeighborhood.AutoSize = true;
+            this.lblNeighborhood.Location = new System.Drawing.Point(3, 79);
+            this.lblNeighborhood.Name = "lblNeighborhood";
+            this.lblNeighborhood.Size = new System.Drawing.Size(34, 13);
+            this.lblNeighborhood.TabIndex = 15;
+            this.lblNeighborhood.Text = "Bairro";
+            // 
+            // txbNumber
+            // 
+            this.txbNumber.Location = new System.Drawing.Point(375, 55);
+            this.txbNumber.Name = "txbNumber";
+            this.txbNumber.Size = new System.Drawing.Size(96, 20);
+            this.txbNumber.TabIndex = 14;
+            this.ttpName.SetToolTip(this.txbNumber, "Digite o número");
+            // 
+            // lblNumber
+            // 
+            this.lblNumber.AutoSize = true;
+            this.lblNumber.Location = new System.Drawing.Point(372, 39);
+            this.lblNumber.Name = "lblNumber";
+            this.lblNumber.Size = new System.Drawing.Size(44, 13);
+            this.lblNumber.TabIndex = 13;
+            this.lblNumber.Text = "Número";
+            // 
+            // mtbCEP
+            // 
+            this.mtbCEP.Location = new System.Drawing.Point(6, 16);
+            this.mtbCEP.Mask = "00000-000";
+            this.mtbCEP.Name = "mtbCEP";
+            this.mtbCEP.Size = new System.Drawing.Size(127, 20);
+            this.mtbCEP.TabIndex = 11;
+            this.ttpName.SetToolTip(this.mtbCEP, "Digite o CEP...");
+            this.mtbCEP.TextChanged += new System.EventHandler(this.mtbCEP_TextChanged);
+            // 
+            // txbStreet
+            // 
+            this.txbStreet.Location = new System.Drawing.Point(6, 55);
+            this.txbStreet.Name = "txbStreet";
+            this.txbStreet.Size = new System.Drawing.Size(358, 20);
+            this.txbStreet.TabIndex = 12;
+            this.ttpName.SetToolTip(this.txbStreet, "Digite o logradouro...");
+            // 
+            // lblStreet
+            // 
+            this.lblStreet.AutoSize = true;
+            this.lblStreet.Location = new System.Drawing.Point(3, 39);
+            this.lblStreet.Name = "lblStreet";
+            this.lblStreet.Size = new System.Drawing.Size(61, 13);
+            this.lblStreet.TabIndex = 11;
+            this.lblStreet.Text = "Logradouro";
+            // 
+            // lblCEP
+            // 
+            this.lblCEP.AutoSize = true;
+            this.lblCEP.Location = new System.Drawing.Point(3, 0);
+            this.lblCEP.Name = "lblCEP";
+            this.lblCEP.Size = new System.Drawing.Size(78, 13);
+            this.lblCEP.TabIndex = 2;
+            this.lblCEP.Text = "Digite seu CEP";
             // 
             // lblGender
             // 
@@ -116,6 +256,7 @@
             // txbEmail
             // 
             this.txbEmail.Location = new System.Drawing.Point(6, 104);
+            this.txbEmail.MaxLength = 40;
             this.txbEmail.Name = "txbEmail";
             this.txbEmail.Size = new System.Drawing.Size(196, 20);
             this.txbEmail.TabIndex = 5;
@@ -133,6 +274,7 @@
             // txbJob
             // 
             this.txbJob.Location = new System.Drawing.Point(6, 64);
+            this.txbJob.MaxLength = 50;
             this.txbJob.Name = "txbJob";
             this.txbJob.Size = new System.Drawing.Size(196, 20);
             this.txbJob.TabIndex = 3;
@@ -150,6 +292,7 @@
             // txbName
             // 
             this.txbName.Location = new System.Drawing.Point(6, 25);
+            this.txbName.MaxLength = 100;
             this.txbName.Name = "txbName";
             this.txbName.Size = new System.Drawing.Size(196, 20);
             this.txbName.TabIndex = 1;
@@ -168,7 +311,7 @@
             // 
             this.btnInsert.BackColor = System.Drawing.Color.PaleGreen;
             this.btnInsert.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsert.Location = new System.Drawing.Point(489, 62);
+            this.btnInsert.Location = new System.Drawing.Point(763, 63);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(97, 46);
             this.btnInsert.TabIndex = 1;
@@ -180,7 +323,7 @@
             // 
             this.btnClear.BackColor = System.Drawing.Color.LemonChiffon;
             this.btnClear.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(489, 12);
+            this.btnClear.Location = new System.Drawing.Point(763, 13);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(97, 46);
             this.btnClear.TabIndex = 2;
@@ -194,7 +337,7 @@
             this.pnlList.Controls.Add(this.LtvList);
             this.pnlList.Location = new System.Drawing.Point(12, 234);
             this.pnlList.Name = "pnlList";
-            this.pnlList.Size = new System.Drawing.Size(574, 137);
+            this.pnlList.Size = new System.Drawing.Size(848, 137);
             this.pnlList.TabIndex = 3;
             // 
             // LtvList
@@ -206,13 +349,15 @@
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader6});
+            this.LtvList.FullRowSelect = true;
             this.LtvList.HideSelection = false;
             this.LtvList.Location = new System.Drawing.Point(6, 3);
             this.LtvList.Name = "LtvList";
-            this.LtvList.Size = new System.Drawing.Size(561, 127);
+            this.LtvList.Size = new System.Drawing.Size(840, 127);
             this.LtvList.TabIndex = 0;
             this.LtvList.UseCompatibleStateImageBehavior = false;
             this.LtvList.View = System.Windows.Forms.View.Details;
+            this.LtvList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LtvList_MouseDoubleClick);
             // 
             // columnHeader1
             // 
@@ -242,11 +387,40 @@
             // 
             this.columnHeader6.Text = "Gênero";
             // 
+            // BtnEdit
+            // 
+            this.BtnEdit.BackColor = System.Drawing.Color.Salmon;
+            this.BtnEdit.Enabled = false;
+            this.BtnEdit.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEdit.Location = new System.Drawing.Point(763, 115);
+            this.BtnEdit.Name = "BtnEdit";
+            this.BtnEdit.Size = new System.Drawing.Size(97, 46);
+            this.BtnEdit.TabIndex = 4;
+            this.BtnEdit.Text = "Editar";
+            this.BtnEdit.UseVisualStyleBackColor = false;
+            this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
+            // 
+            // BtnDelete
+            // 
+            this.BtnDelete.BackColor = System.Drawing.Color.Firebrick;
+            this.BtnDelete.Enabled = false;
+            this.BtnDelete.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnDelete.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BtnDelete.Location = new System.Drawing.Point(763, 167);
+            this.BtnDelete.Name = "BtnDelete";
+            this.BtnDelete.Size = new System.Drawing.Size(97, 46);
+            this.BtnDelete.TabIndex = 5;
+            this.BtnDelete.Text = "Excluir";
+            this.BtnDelete.UseVisualStyleBackColor = false;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            // 
             // FormUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(598, 383);
+            this.ClientSize = new System.Drawing.Size(872, 408);
+            this.Controls.Add(this.BtnDelete);
+            this.Controls.Add(this.BtnEdit);
             this.Controls.Add(this.pnlList);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnInsert);
@@ -258,6 +432,8 @@
             this.Load += new System.EventHandler(this.FormUser_Load);
             this.pnlCadUser.ResumeLayout(false);
             this.pnlCadUser.PerformLayout();
+            this.pnlAddress.ResumeLayout(false);
+            this.pnlAddress.PerformLayout();
             this.pnlList.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -287,5 +463,20 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.Panel pnlAddress;
+        private System.Windows.Forms.TextBox txbNeighborhood;
+        private System.Windows.Forms.Label lblNeighborhood;
+        private System.Windows.Forms.TextBox txbNumber;
+        private System.Windows.Forms.Label lblNumber;
+        private System.Windows.Forms.MaskedTextBox mtbCEP;
+        private System.Windows.Forms.TextBox txbStreet;
+        private System.Windows.Forms.Label lblStreet;
+        private System.Windows.Forms.Label lblCEP;
+        private System.Windows.Forms.TextBox txbState;
+        private System.Windows.Forms.Label lblState;
+        private System.Windows.Forms.TextBox txbCity;
+        private System.Windows.Forms.Label lblCity;
+        private System.Windows.Forms.Button BtnEdit;
+        private System.Windows.Forms.Button BtnDelete;
     }
 }
