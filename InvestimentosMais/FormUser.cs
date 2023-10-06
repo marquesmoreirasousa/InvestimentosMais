@@ -186,7 +186,7 @@ namespace InvestimentosMais
 
             try
             {
-                //Insere o cliente
+                //IEditar o cliente
                 sqlCommand.ExecuteNonQuery();
 
                 ClearFields();
